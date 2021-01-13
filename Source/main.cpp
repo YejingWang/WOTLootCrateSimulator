@@ -1,5 +1,5 @@
 /***************************************************
-* Author: Weiyuyijin
+* Author: weiyuyijin
 * Date: 2020/12/12
 ****************************************************/
 
@@ -14,7 +14,7 @@ int main(int argc, char* argv[])
     QApplication app(argc, argv);
     QCoreApplication::setOrganizationName("weiyuyijin");
     QCoreApplication::setApplicationName("WOT Loot Crate Simulator");
-    QCoreApplication::setApplicationVersion("1.11");
+    QCoreApplication::setApplicationVersion("1.10");
 
     MainWindow window;
     window.show();

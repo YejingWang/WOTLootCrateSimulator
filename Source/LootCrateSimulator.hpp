@@ -24,9 +24,10 @@ class Prize
     };
 
 public:
-    Prize(const std::string name = "", const unsigned int goldValue = 0,
-        const unsigned int creditValue = 0, const bool useGoldForCompensation = true) :
+    Prize(const std::string name = "", const PrizeCategory category = PrizeCategory::eTank,
+        const unsigned int goldValue = 0, const unsigned int creditValue = 0, const bool useGoldForCompensation = true) :
         mName(name),
+        mCategory(category),
         mGoldValue(goldValue),
         mCreditValue(creditValue),
         mUseGoldForCompensation(useGoldForCompensation)
@@ -37,20 +38,32 @@ public:
 
 private:
     std::string mName;
+    PrizeCategory mCategory;
     unsigned int mGoldValue;
     unsigned int mCreditValue;
     bool mUseGoldForCompensation;
 };
 
-class PrizeType : public std::vector<Prize>
+class PrizePack
 {
-    PrizeType(const bool repeatedDraw = false) :
-        mRepeatedDraw(repeatedDraw)
+public:
+    PrizePack(const std::string& name = "", const double odds = 0., const bool repeatedDraw = false) :
+        mName(name),
+        mOdds(odds),
+        mPrizes()
     {}
-    ~PrizeType() = default;
+    ~PrizePack() = default;
+
+    void setOdds(const double odds) { mOdds = odds; }
+    void addPrize(const Prize& prize) { mPrizes.push_back(prize); }
+
+    std::string roll() const;
 
 private:
+    std::string mName;
+    double mOdds;
     bool mRepeatedDraw;
+    std::vector<Prize> mPrizes;
 };
 
 class LootCrateSimulator
@@ -58,7 +71,7 @@ class LootCrateSimulator
 public:
     LootCrateSimulator(const unsigned int rollTime = 50) :
         mRollTime(rollTime),
-        mPrizes()
+        mPrizePacks()
     {
     }
 
@@ -67,5 +80,5 @@ private:
     void roll();
 
     unsigned int mRollTime;
-    std::unordered_map<double, PrizeType> mPrizes;
+    std::vector<PrizePack> mPrizePacks;
 };
