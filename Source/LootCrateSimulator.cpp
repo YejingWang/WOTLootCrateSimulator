@@ -19,6 +19,7 @@ std::string PrizePack::roll() const
     else {
 
     }
+    return "";
 }
 
 void LootCrateSimulator::roll()
