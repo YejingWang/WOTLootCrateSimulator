@@ -1,5 +1,5 @@
 /***************************************************
-* Author: weiyuyijin
+* Author: Weiyuyijin
 * Date: 2020/12/12
 ****************************************************/
 
@@ -8,7 +8,6 @@
 #include <string>
 #include <vector>
 #include <memory>
-#include <unordered_map>
 
 class Prize
 {
@@ -42,16 +41,33 @@ private:
     bool mUseGoldForCompensation;
 };
 
+class PrizePack
+{
+public:
+    PrizePack(const std::string& name = "", const double odds = 0.) :
+        mName(name),
+        mOdds(odds),
+        mPrizes()
+    {}
+    ~PrizePack() = default;
+
+    void setOdds(const double odds) { mOdds = odds; }
+    void addPrize(const Prize& prize) { mPrizes.push_back(prize); }
+
+private:
+    std::string mName;
+    double mOdds;
+    std::vector<Prize> mPrizes;
+};
+
 class LootCrateSimulator
 {
 public:
-    LootCrateSimulator(const unsigned int rollTime = 50) {
-
-    }
+    LootCrateSimulator(const unsigned int rollTime = 50);
 
 private:
     std::string getCurrentDirectory() const;
 
     unsigned int mRollTime;
-    std::unordered_map<double, std::vector<Prize>> mPrizes;
+    std::vector<PrizePack> mPrizePacks;
 };

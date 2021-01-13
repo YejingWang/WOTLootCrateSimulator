@@ -17,6 +17,7 @@ add_definitions(-D_ITERATOR_DEBUG_LEVEL=0)
 project (WOTLootCrateSimulator VERSION 1.0.0 LANGUAGES C CXX)
 
 set(THREADS_PREFER_PTHREAD_FLAG ON)
+set(CMAKE_AUTOMOC TRUE)
 
 IF (WIN32)
     add_definitions(-D_WIN32_WINNT=0x0501)
@@ -34,18 +35,16 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 set_property(GLOBAL PROPERTY PREDEFINED_TARGETS_FOLDER "CMakeTargets")
 
 set(SRC_ROOT "${CMAKE_CURRENT_LIST_DIR}/../Source")
-
 file(GLOB srcs "${SRC_ROOT}/*.hpp" "${SRC_ROOT}/*.cpp")
-
 source_group(TREE "${SRC_ROOT}" FILES ${srcs})
+	
+set(QT_ROOT "${CMAKE_CURRENT_LIST_DIR}/../3rdparty/Qt/qt-5.13.0")
+include_directories("${QT_ROOT}/include")
+include_directories("${CMAKE_CURRENT_LIST_DIR}/../3rdparty/")
 
 add_executable(${PROJECT_NAME} ${srcs})
 
 IF(MSVC)
-	set(QT_ROOT "${CMAKE_CURRENT_LIST_DIR}/../Qt/qt-5.13.0")
-	
-    include_directories("${QT_ROOT}/include")
-    
 	target_link_libraries(WOTLootCrateSimulator debug "${QT_ROOT}/lib/Qt5Cored.lib")
     target_link_libraries(WOTLootCrateSimulator debug "${QT_ROOT}/lib/Qt5Guid.lib")
     target_link_libraries(WOTLootCrateSimulator debug "${QT_ROOT}/lib/Qt5Widgetsd.lib")
@@ -62,7 +61,5 @@ IF(MSVC)
 				COMMAND ${CMAKE_COMMAND} -E copy_directory ${QT_ROOT}/bin ${CMAKE_BINARY_DIR}/bin/Release
 				COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/bin/Release/platforms
 				COMMAND ${CMAKE_COMMAND} -E copy_directory ${QT_ROOT}/bin/platforms ${CMAKE_BINARY_DIR}/bin/Release/platforms
-				COMMAND ${CMAKE_COMMAND} -E copy_directory ${CYBERTRON_PATH_VEHICLEDYNAMIC}/Resource ${CMAKE_BINARY_DIR}/bin/Debug
-		        COMMAND ${CMAKE_COMMAND} -E copy_directory ${CYBERTRON_PATH_VEHICLEDYNAMIC}/Resource ${CMAKE_BINARY_DIR}/bin/Release
 				)
 ENDIF()

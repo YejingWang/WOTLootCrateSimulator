@@ -1,11 +1,12 @@
 /***************************************************
-* Author: weiyuyijin
+* Author: Weiyuyijin
 * Date: 2020/12/12
 ****************************************************/
 
 #pragma once
 
 #include "QtWidgets/QMainWindow"
+#include "QtCore/QObject"
 
 class MainWindow : public QMainWindow
 {
@@ -15,5 +16,7 @@ public:
     MainWindow();
 
 protected:
+
+private slots:
 
 };
