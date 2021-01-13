@@ -12,7 +12,7 @@
 
 class Prize
 {
-    enum PrizeType {
+    enum PrizeCategory {
         eTank,
         eGold,
         eCredit,
@@ -42,16 +42,30 @@ private:
     bool mUseGoldForCompensation;
 };
 
+class PrizeType : public std::vector<Prize>
+{
+    PrizeType(const bool repeatedDraw = false) :
+        mRepeatedDraw(repeatedDraw)
+    {}
+    ~PrizeType() = default;
+
+private:
+    bool mRepeatedDraw;
+};
+
 class LootCrateSimulator
 {
 public:
-    LootCrateSimulator(const unsigned int rollTime = 50) {
-
+    LootCrateSimulator(const unsigned int rollTime = 50) :
+        mRollTime(rollTime),
+        mPrizes()
+    {
     }
 
 private:
     std::string getCurrentDirectory() const;
+    void roll();
 
     unsigned int mRollTime;
-    std::unordered_map<double, std::vector<Prize>> mPrizes;
+    std::unordered_map<double, PrizeType> mPrizes;
 };

@@ -10,3 +10,8 @@ LootCrateSimulator::LootCrateSimulator(const unsigned int rollTime = 50)
 
 std::string LootCrateSimulator::getCurrentDirectory() const
 {}
+
+void LootCrateSimulator::roll()
+{
+
+}
