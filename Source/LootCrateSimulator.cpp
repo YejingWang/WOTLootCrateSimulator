@@ -4,22 +4,26 @@
 ****************************************************/
 
 #include "nlohmann/json.hpp"
+#include "RngGenerator.hpp"
 #include "LootCrateSimulator.hpp"
 
-std::string Prize::result() const
-{
-    return "";
-}
+static RngGenerator<double> rng(0., 1.);
 
-std::string PrizePack::roll() const
+void PrizePack::roll()
 {
     if (mRepeatedDraw) {
-
+        for (auto& prize : mPrizes) {
+            if (rng() < mOdds) {
+                mResult += prize.name();
+            }
+        }
     }
     else {
-
+        double rngRes = rng();
+        if (rngRes < mOdds) {
+            mResult += mPrizes[(size_t)(rngRes / (mOdds / mPrizes.size()))].name();
+        }
     }
-    return "";
 }
 
 void LootCrateSimulator::roll()

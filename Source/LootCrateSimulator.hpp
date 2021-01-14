@@ -34,7 +34,7 @@ public:
     {}
     ~Prize() = default;
 
-    std::string result() const;
+    std::string name() const { return mName; }
 
 private:
     std::string mName;
@@ -50,20 +50,23 @@ public:
     PrizePack(const std::string& name = "", const double odds = 0., const bool repeatedDraw = false) :
         mName(name),
         mOdds(odds),
-        mPrizes()
+        mPrizes(),
+        mResult()
     {}
     ~PrizePack() = default;
 
     void setOdds(const double odds) { mOdds = odds; }
     void addPrize(const Prize& prize) { mPrizes.push_back(prize); }
 
-    std::string roll() const;
+    void roll();
+    std::string result() { return mResult; }
 
 private:
     std::string mName;
     double mOdds;
     bool mRepeatedDraw;
     std::vector<Prize> mPrizes;
+    std::string mResult;
 };
 
 class LootCrateSimulator
@@ -71,14 +74,15 @@ class LootCrateSimulator
 public:
     LootCrateSimulator(const unsigned int rollTime = 50) :
         mRollTime(rollTime),
-        mPrizePacks()
+        mPrizePacks(),
+        mResult()
     {
     }
 
 private:
-    std::string getCurrentDirectory() const;
     void roll();
 
     unsigned int mRollTime;
     std::vector<PrizePack> mPrizePacks;
+    std::string mResult;
 };
