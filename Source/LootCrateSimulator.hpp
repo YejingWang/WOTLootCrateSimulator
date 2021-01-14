@@ -8,10 +8,11 @@
 #include <string>
 #include <vector>
 #include <memory>
-#include <unordered_map>
+#include <unordered_set>
 
 class Prize
 {
+public:
     enum PrizeCategory {
         eTank,
         eGold,
@@ -23,18 +24,17 @@ class Prize
         eDecoration
     };
 
-public:
     Prize(const std::string name = "", const PrizeCategory category = PrizeCategory::eTank,
-        const unsigned int goldValue = 0, const unsigned int creditValue = 0, const bool useGoldForCompensation = true) :
+        const unsigned int goldValue = 0, const unsigned int creditValue = 0) :
         mName(name),
         mCategory(category),
         mGoldValue(goldValue),
-        mCreditValue(creditValue),
-        mUseGoldForCompensation(useGoldForCompensation)
+        mCreditValue(creditValue)
     {}
     ~Prize() = default;
 
     std::string name() const { return mName; }
+    PrizeCategory category() const { return mCategory; }
 
 private:
     std::string mName;
@@ -55,18 +55,19 @@ public:
     {}
     ~PrizePack() = default;
 
+    std::string name() const { return mName; }
     void setOdds(const double odds) { mOdds = odds; }
     void addPrize(const Prize& prize) { mPrizes.push_back(prize); }
 
     void roll();
-    std::string result() { return mResult; }
+    std::vector<Prize> result() const { return mResult; }
 
 private:
     std::string mName;
     double mOdds;
     bool mRepeatedDraw;
     std::vector<Prize> mPrizes;
-    std::string mResult;
+    std::vector<Prize> mResult;
 };
 
 class LootCrateSimulator
@@ -75,14 +76,16 @@ public:
     LootCrateSimulator(const unsigned int rollTime = 50) :
         mRollTime(rollTime),
         mPrizePacks(),
-        mResult()
+        mResultSet()
     {
     }
+
+    std::string resultString() const;
 
 private:
     void roll();
 
     unsigned int mRollTime;
     std::vector<PrizePack> mPrizePacks;
-    std::string mResult;
+    std::unordered_set<std::string> mResultSet;
 };

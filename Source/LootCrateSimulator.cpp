@@ -14,14 +14,14 @@ void PrizePack::roll()
     if (mRepeatedDraw) {
         for (auto& prize : mPrizes) {
             if (rng() < mOdds) {
-                mResult += prize.name();
+                mResult.push_back(prize);
             }
         }
     }
     else {
         double rngRes = rng();
         if (rngRes < mOdds) {
-            mResult += mPrizes[(size_t)(rngRes / (mOdds / mPrizes.size()))].name();
+            mResult.push_back(mPrizes[(size_t)(rngRes / (mOdds / mPrizes.size()))]);
         }
     }
 }
@@ -30,7 +30,31 @@ void LootCrateSimulator::roll()
 {
     for (unsigned int i = 0; i < mRollTime; ++i) {
         for (auto& p : mPrizePacks) {
-
+            p.roll();
         }
     }
+}
+
+std::string LootCrateSimulator::resultString() const
+{
+    std::string res;
+
+    for (unsigned int i = 0; i < mRollTime; ++i) {
+        for (auto& prizePack : mPrizePacks) {
+            for (auto& prize : prizePack.result()) {
+                switch (prize.category())
+                {
+                case Prize::PrizeCategory::eTank:
+                    if (mResultSet.find(prize.name()) != mResultSet.end()) {
+                        res += prize.name();
+                    }
+                    break;
+                default:
+                    break;
+                }
+            }
+        }
+    }
+
+    return std::move(res);
 }
