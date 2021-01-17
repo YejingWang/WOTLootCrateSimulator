@@ -10,6 +10,8 @@
 #include <memory>
 #include <unordered_set>
 
+#include "nlohmann/json.hpp"
+
 class Prize
 {
 public:
@@ -65,7 +67,7 @@ public:
 private:
     std::string mName;
     double mOdds;
-    bool mRepeatedDraw;
+    bool mRepeatedDraw; // if true, every Prize in mPrizes is individually drawn
     std::vector<Prize> mPrizes;
     std::vector<Prize> mResult;
 };
@@ -81,6 +83,9 @@ public:
     }
 
     std::string resultString() const;
+
+    bool loadJson(const std::string& fileName, nlohmann::json& jsonNode);
+    bool wirteToFile(const std::string& fileName);
 
 private:
     void roll();
