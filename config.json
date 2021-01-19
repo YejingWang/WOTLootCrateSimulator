@@ -1,0 +1,103 @@
+{
+  "RollTime": 50,
+  "PrizePack": [
+	{
+		"Name": "",
+		"Odds": 0.084,
+		"RepeatedDraw": false,
+		"Prizes": [
+			{
+				"Name": "Bisonte C45",
+				"Type": "Tank",
+				"GoldValue": 10200,
+				"CreditValue": 0
+			},
+			{
+				"Name": "GSOR 1008",
+				"Type": "Tank",
+				"GoldValue": 9000,
+				"CreditValue": 0
+			},
+			{
+				"Name": "Bat Chatillon Bourrasque",
+				"Type": "Tank",
+				"GoldValue": 7600,
+				"CreditValue": 0
+			},
+			{
+				"Name": "ISU-152K",
+				"Type": "Tank",
+				"GoldValue": 8700,
+				"CreditValue": 0
+			},
+			{
+				"Name": "Conqueror Gun Carriage - Little Bart",
+				"Type": "3DStyle",
+				"GoldValue": 0,
+				"CreditValue": 0
+			}
+			{
+				"Name": "STB-1 - Winter Lotus",
+				"Type": "3DStyle",
+				"GoldValue": 0,
+				"CreditValue": 0
+			}
+			{
+				"Name": "Maus - Landkreuzer",
+				"Type": "3DStyle",
+				"GoldValue": 0,
+				"CreditValue": 0
+			}
+			{
+				"Name": "WZ-111 model 5A - The Last Dragon",
+				"Type": "3DStyle",
+				"GoldValue": 0,
+				"CreditValue": 0
+			}
+			{
+				"Name": "60TP Lewandowskiego - 40:1",
+				"Type": "3DStyle",
+				"GoldValue": 0,
+				"CreditValue": 0
+			}
+			{
+				"Name": "T110E4 - Major Ram",
+				"Type": "3DStyle",
+				"GoldValue": 0,
+				"CreditValue": 0
+			}
+			{
+				"Name": "E100 - Klarer Himmel",
+				"Type": "3DStyle",
+				"GoldValue": 0,
+				"CreditValue": 0
+			}
+			{
+				"Name": "Object 140 - Sekhmet",
+				"Type": "3DStyle",
+				"GoldValue": 0,
+				"CreditValue": 0
+			}
+			{
+				"Name": "AMX 13 105 - Vipère Noire",
+				"Type": "3DStyle",
+				"GoldValue": 0,
+				"CreditValue": 0
+			}
+			{
+				"Name": "Jagdpanzer E 100 - Panzerschiff",
+				"Type": "3DStyle",
+				"GoldValue": 0,
+				"CreditValue": 0
+			}
+			{
+				"Name": "Object 430U - Kelevra",
+				"Type": "3DStyle",
+				"GoldValue": 0,
+				"CreditValue": 0
+			}
+		]
+	}
+  ]
+ 
+}
