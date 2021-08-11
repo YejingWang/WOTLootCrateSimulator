@@ -55,11 +55,11 @@ IF(MSVC)
 	add_custom_command(TARGET WOTLootCrateSimulator 
 				PRE_BUILD
 				COMMAND echo "executing prebuild command"
-				COMMAND ${CMAKE_COMMAND} -E copy_directory ${QT_ROOT}/bin ${CMAKE_BINARY_DIR}/bin/Debug
-				COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/bin/Debug/platforms
-				COMMAND ${CMAKE_COMMAND} -E copy_directory ${QT_ROOT}/bin/platforms ${CMAKE_BINARY_DIR}/bin/Debug/platforms
-				COMMAND ${CMAKE_COMMAND} -E copy_directory ${QT_ROOT}/bin ${CMAKE_BINARY_DIR}/bin/Release
-				COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/bin/Release/platforms
-				COMMAND ${CMAKE_COMMAND} -E copy_directory ${QT_ROOT}/bin/platforms ${CMAKE_BINARY_DIR}/bin/Release/platforms
+				COMMAND ${CMAKE_COMMAND} -E copy_directory ${QT_ROOT}/bin ${CMAKE_BINARY_DIR}/Debug
+				COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/Debug/platforms
+				COMMAND ${CMAKE_COMMAND} -E copy_directory ${QT_ROOT}/bin/platforms ${CMAKE_BINARY_DIR}/Debug/platforms
+				COMMAND ${CMAKE_COMMAND} -E copy_directory ${QT_ROOT}/bin ${CMAKE_BINARY_DIR}/Release
+				COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/Release/platforms
+				COMMAND ${CMAKE_COMMAND} -E copy_directory ${QT_ROOT}/bin/platforms ${CMAKE_BINARY_DIR}/Release/platforms
 				)
 ENDIF()
